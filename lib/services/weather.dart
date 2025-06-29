@@ -1,4 +1,24 @@
+import 'location.dart';
+import 'netwroking.dart';
+
 class WeatherModel {
+
+  Future<dynamic> getLocation() async{
+    Location location = Location();
+    await location.getCurrentLocation();
+    print("lat = ${location.latitude} long = ${location.longitude}");
+    NetworkHelper networkHelper = NetworkHelper();
+    var weatherData =  await networkHelper.getWeatherData(location.latitude,location.longitude);
+    return weatherData;
+
+  }
+
+  Future<dynamic> getWeatherByCity(dynamic city) async{
+    NetworkHelper networkHelper = NetworkHelper();
+    var weatherData = await networkHelper.getWeatherDataByCity(city);
+    return weatherData;
+  }
+
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';
@@ -9,7 +29,7 @@ class WeatherModel {
     } else if (condition < 700) {
       return '☃️';
     } else if (condition < 800) {
-      return '🌫';
+      return '☀️';
     } else if (condition == 800) {
       return '☀️';
     } else if (condition <= 804) {
