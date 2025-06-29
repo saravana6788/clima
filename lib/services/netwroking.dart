@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const String API_KEY = "23327e8f1d55be5e30141dd8de8784a0";
+const String API_KEY = "";
 
 class NetworkHelper{
   Future getWeatherData(dynamic lat,dynamic long) async{
